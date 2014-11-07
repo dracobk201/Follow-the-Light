@@ -1,6 +1,8 @@
 fileFormatVersion: 2
 guid: d34a6efd8782b12409d492f1f767145a
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: Bloques_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
