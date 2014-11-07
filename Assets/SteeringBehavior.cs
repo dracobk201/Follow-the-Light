@@ -56,15 +56,15 @@ public class SteeringBehavior : MonoBehaviour {
 	bool arrive;
 	bool flee;
 	// Esto fue lo que cambie
-	bool pursuit = true;
+	bool pursuit = false;
 	bool evade;
 	bool wander;
 	bool alignment;
 	bool cohesion;
 	bool separation;
 	bool avoid;
-	bool hide;
-	bool wallAvoidance;
+	bool hide = true;
+	bool wallAvoidance = true;
 	int wander_timer = 0;
 	
 	Vector3 target_last_pos;
@@ -150,7 +150,7 @@ public class SteeringBehavior : MonoBehaviour {
 		
 		
 		layerMask = ~layerMask;
-		//wallLayerMask = ~wallLayerMask;
+		wallLayerMask = ~wallLayerMask;
 	}
 	
 	void LateUpdate(){
@@ -431,7 +431,7 @@ public class SteeringBehavior : MonoBehaviour {
 			
 			if (index >= 0)
 			{
-				//Debug.Log("hit wall with feeler: " + index);
+				Debug.Log("hit wall with feeler: " + index);
 				Vector3 overShoot = feelers[index]-(closestHit.point - transform.position);
 				steeringForce=closestHit.normal*overShoot.magnitude;
 			}
