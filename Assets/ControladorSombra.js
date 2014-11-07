@@ -67,7 +67,7 @@ if (Vert) { if (transform.position.y >= Ypos + maxAmount) { max = true; }
 function OnCollisionEnter2D (col : Collision2D) {
 	if(col.gameObject.tag == "Player") {
 	max = true;
-	Debug.Log("Paso");
+	//Debug.Log("Paso");
 	}
-	Debug.Log("PasoPorLaFuncion");
+	//Debug.Log("PasoPorLaFuncion");
 }
