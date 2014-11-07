@@ -55,16 +55,15 @@ public class SteeringBehavior : MonoBehaviour {
 	bool seek;
 	bool arrive;
 	bool flee;
-	// Esto fue lo que cambie
-	bool pursuit = false;
-	bool evade;
+	bool pursuit;
+	bool evade = true;
 	bool wander;
 	bool alignment;
 	bool cohesion;
 	bool separation;
 	bool avoid;
 	bool hide = true;
-	bool wallAvoidance = true;
+	bool wallAvoidance;
 	int wander_timer = 0;
 	
 	Vector3 target_last_pos;
