@@ -4,10 +4,10 @@ using System.Collections;
 public class ControladorPersonaje : MonoBehaviour {
 	
 	public float speed = 1f;
-	public bool bajando = false;
-	public bool subiendo = false;
-	public bool izquierda = false;
-	public bool derecha = false;
+	private bool bajando = false;
+	private bool subiendo = false;
+	private bool izquierda = false;
+	private bool derecha = false;
 	public Animator animator;
 
 	void Awake(){
