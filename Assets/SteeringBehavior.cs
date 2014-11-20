@@ -24,6 +24,7 @@ public class SteeringBehavior : MonoBehaviour {
 	public float wallAvoidanceAmt = 1.0f;
 	
 	public GameObject target;
+	public GameObject seektarget;
 	
 	//flock behaviours
 	public float BoundingRadius = 2.0f;
@@ -52,22 +53,24 @@ public class SteeringBehavior : MonoBehaviour {
 	public float hide_obj_width = 2.0f;
 	public float hide_from_obj = 3.0f;
 	
-	bool seek;
+	bool seek = true;
 	bool arrive;
 	bool flee;
 	bool pursuit;
-	bool evade = true;
+	bool evade;
 	bool wander;
 	bool alignment;
 	bool cohesion;
 	bool separation;
 	bool avoid;
-	bool hide = true;
-	bool wallAvoidance;
+	bool hide;
+	bool wallAvoidance = true;
 	int wander_timer = 0;
 	
 	Vector3 target_last_pos;
 	Vector3 target_vel;
+	Vector3 seek_target_last_pos;
+	Vector3 seek_target_vel;
 	protected Vector3 wander_target = Vector3.zero;
 	Vector3 p1;
 	Vector3 p2;
@@ -155,6 +158,10 @@ public class SteeringBehavior : MonoBehaviour {
 	void LateUpdate(){
 		target_vel = (target.transform.position - target_last_pos)/Time.deltaTime;
 		target_last_pos = target.transform.position;
+
+		seek_target_vel = (seektarget.transform.position - seek_target_last_pos)/Time.deltaTime;
+		seek_target_last_pos = seektarget.transform.position;
+
 		myVehicle = this.GetComponent<Vehicle>();
 		
 	}
@@ -344,7 +351,8 @@ public class SteeringBehavior : MonoBehaviour {
 		Vector3 total_steering_force = Vector3.zero;
 		
 		if (seek)
-			total_steering_force += Seek (target.transform.position)*seekAmt;
+			total_steering_force += Seek (seektarget.transform.position)*seekAmt;
+			//total_steering_force += Seek (target.transform.position)*seekAmt;
 		if(arrive)
 			total_steering_force += Arrive(target.transform.position)*arriveAmt;
 		if(flee)
