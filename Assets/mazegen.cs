@@ -30,7 +30,7 @@ public class mazegen : MonoBehaviour {
 		{
 			if (hv == 1)
 			{
-				if (arreglo[i, line] == 0) { i = 1000000; }
+				if (arreglo[i, line] == 0) { i = 10000000; }
 				else{
 				arreglo[i, line] = 0;
 				}
@@ -38,7 +38,7 @@ public class mazegen : MonoBehaviour {
 			}
 			else
 			{
-				if (arreglo[line, i] == 0) { i = 1000000; }
+				if (arreglo[line, i] == 0) { i = 10000000; }
 				else{
 				arreglo[line, i] = 0;
 				}
