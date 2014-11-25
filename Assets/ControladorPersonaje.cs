@@ -4,6 +4,8 @@ using System.Collections;
 public class ControladorPersonaje : MonoBehaviour {
 	
 	public float speed = 1f;
+	private float valor0 = 0f;
+	private float valorIzquierda = -90f;
 	private bool bajando = false;
 	private bool subiendo = false;
 	private bool izquierda = false;
@@ -45,6 +47,10 @@ public class ControladorPersonaje : MonoBehaviour {
 			transform.Translate(-Vector2.up * speed * Time.deltaTime);
 			bajando = true;
 			LimpiandoVariables("bajando");
+		}
+
+		if(Input.GetKey(KeyCode.LeftShift)) {
+			transform.Rotate(transform.rotation.x, transform.rotation.y, -90);
 		}
 	}
 
