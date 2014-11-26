@@ -79,17 +79,13 @@ public class mazegen : MonoBehaviour {
 					instance = Instantiate(prefab, new Vector3(i ,j, 0), new Quaternion()) as GameObject;
 			}
 		}
-		
-
-		}
+	}
 
 	void Start () {
 		relog ();
 						
 	}
 
-
-	
 	// Update is called once per frame
 	void Update () {
 	
