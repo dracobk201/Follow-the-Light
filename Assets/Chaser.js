@@ -12,6 +12,6 @@ function Update () {
 
 	if(victim) {
 		navComponent.SetDestination(victim.position);
+		navComponent.updateRotation = false; 
 	}
-
 }
