@@ -8,6 +8,7 @@ public class Chaser : MonoBehaviour {
 	public float interestDistance = 100.0f;
 	public float chaseRange = 100.0f;
 	public float damping = 5.0f;
+	//public bool paralize = false;
 
 	private Vector3 startPosition;  //Give it a startPosition so it knows where it's 'home' location is.
 	public bool wandering = false;  //Set a bool or state so it knows if it's wandering or chasing a player
@@ -96,6 +97,13 @@ public class Chaser : MonoBehaviour {
 		_navMeshComponent.SetDestination(targetPoint);
 	}
 
-
+	//Funcion dada por Issac
+//	void paralized() {
+//		if(!paralized){
+//			paralized= true;
+//			yield break WaitForSeconds(10);
+//			paralized = false;
+//		}
+//	}
 
 }
