@@ -22,6 +22,7 @@ public class ControladorColisiones : MonoBehaviour {
 		if(col.gameObject.tag == "Luz"){
 			//elScript = col.GetComponent(nomScript); 
 			//Debug.Log(elScript);
+			Debug.Log("Hit the lights!");
 			//elScript.enabled = false;
 			//Este es el mas funcional//col.gameObject.GetComponent<nomScript>().enabled = false;
 			activado = false;

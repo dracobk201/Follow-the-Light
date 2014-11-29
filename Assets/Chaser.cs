@@ -13,6 +13,7 @@ public class Chaser : MonoBehaviour {
 	private Vector3 startPosition;  //Give it a startPosition so it knows where it's 'home' location is.
 	public bool wandering = false;  //Set a bool or state so it knows if it's wandering or chasing a player
 	public bool chasing = false;
+	public bool paralized = false;
 	private float wanderSpeed = 0.5f;
 	
 	private NavMeshAgent _navMeshComponent;
@@ -28,8 +29,7 @@ public class Chaser : MonoBehaviour {
 	void Update(){
 		distance = Vector3.Distance( target.position, transform.position);
 		// El personaje esta fuera de rango
-		if ( distance > searchDistance ){
-
+		if (distance > searchDistance && !paralized){
 			if (!wandering){
 				wandering = true;
 				chasing = false;
@@ -42,7 +42,7 @@ public class Chaser : MonoBehaviour {
 
 		}
 		// Esta en el rango
-		if (distance < chaseRange){
+		if (distance < chaseRange && !paralized){
 				chasing = true;
 				wandering = false;
 				CancelInvoke();
@@ -55,7 +55,7 @@ public class Chaser : MonoBehaviour {
 		Debug.Log( "search()" );
 		
 		//animation.CrossFade("LookAround01");
-		_navMeshComponent.Stop(true);                
+		_navMeshComponent.Stop(true);
 	}
 	
 	private void investigate(){
@@ -96,14 +96,34 @@ public class Chaser : MonoBehaviour {
 		//Sets the agents new target destination to the position passed in
 		_navMeshComponent.SetDestination(targetPoint);
 	}
-
+	
+	void OnTriggerEnter (Collider col) {
+		if(col.gameObject.tag == "Luz"){
+			//elScript = col.GetComponent(nomScript); 
+			//Debug.Log(elScript);
+			Debug.Log("Hit the lights!");
+			StartCoroutine(paralize());
+			//elScript.enabled = false;
+			//Este es el mas funcional//col.gameObject.GetComponent<nomScript>().enabled = false;
+			//activado = false;
+		}
+		else
+		{
+			//activado = true;
+		}
+	}
+	
 	//Funcion dada por Issac
-//	void paralized() {
-//		if(!paralized){
-//			paralized= true;
-//			yield break WaitForSeconds(10);
-//			paralized = false;
-//		}
-//	}
+	IEnumerator paralize() {
+		if(!paralized){
+			paralized = true;
+			wandering = false;
+			chasing = false;
+			_navMeshComponent.Stop(true);
+			//yield break; 
+			yield return new WaitForSeconds(10);
+			paralized = false;
+		}
+	}
 
 }
