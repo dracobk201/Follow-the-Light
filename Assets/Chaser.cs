@@ -75,7 +75,7 @@ public class Chaser : MonoBehaviour {
 		_navMeshComponent.SetDestination(target.position);
 		//_navMeshComponent.updateRotation = false;
 		//_navMeshComponent.destination = target.position;
-		_navMeshComponent.speed = 30.0f;
+		_navMeshComponent.speed = 80.0f;
 	}
 	
 	//When the enemy is spawned via script or if it's pre-placed in the world we want it to first
@@ -85,7 +85,7 @@ public class Chaser : MonoBehaviour {
 	void Wander(){
 		//Pick a random location within wander-range of the start position and send the agent there
 		//Debug.Log( "wander()" );
-		_navMeshComponent.speed = 20.0f;
+		_navMeshComponent.speed = 50.0f;
 		Vector3 destination = startPosition + new Vector3(Random.Range (-100, 100), 
 		                                                  0, 
 		                                                  Random.Range (-100, 100));
@@ -107,9 +107,10 @@ public class Chaser : MonoBehaviour {
 			//Este es el mas funcional//col.gameObject.GetComponent<nomScript>().enabled = false;
 			//activado = false;
 		}
-		else
+		else if (col.gameObject.tag == "Player")
 		{
-			//activado = true;
+			//Debug.Log("Game Over");
+			Application.LoadLevel("GameOver");
 		}
 	}
 	
@@ -121,7 +122,7 @@ public class Chaser : MonoBehaviour {
 			chasing = false;
 			_navMeshComponent.Stop(true);
 			//yield break; 
-			yield return new WaitForSeconds(10);
+			yield return new WaitForSeconds(2);
 			paralized = false;
 		}
 	}
